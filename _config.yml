@@ -1,0 +1,5 @@
+permalink: /:month-:day-:year-:title
+pygments: true
+paginate: 4
+exclude: ['dummy.html']
+server_port: 4000

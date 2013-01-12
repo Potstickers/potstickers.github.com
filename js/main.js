@@ -7,6 +7,7 @@ $(document).ready(
 		$('nav ul li a').hover(function(){
 			$(this).parent().toggleClass('navselected');
 		});
+		content_div.addClass('showblogs');
 		//ajax stuff
 		$('.post a').click(function(){
 			

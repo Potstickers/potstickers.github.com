@@ -1,4 +1,4 @@
 permalink: /:month-:day-:year-:title
 pygments: true
-paginate: 4
+paginate: 5
 exclude: ['dummy.html']

@@ -13,6 +13,9 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 }
 
 ::-moz-selection {
@@ -71,7 +74,7 @@ nav{
 }
 nav ul li{
     width: 0;
-    background-color: #BE304C;
+    background-color: #DC143C;
     margin-left: -2.5em;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
@@ -81,7 +84,7 @@ nav ul li{
     -o-transition: width 0.4s ease-out;
     transition: width 0.4s ease-out;
 }
-.navselected{  
+nav ul li:hover, .navselected{  
     width: 12em;
     -webkit-transition: width 0.2s ease-in;
     -moz-transition: width 0.2s ease-in;
@@ -89,7 +92,6 @@ nav ul li{
     transition: width 0.2s ease-in;
 }
 nav ul a{
-    postion: absolute;
     min-width: 11em;
     padding-right: 1em;
     text-align: right;
@@ -101,13 +103,13 @@ nav ul a{
     background-color: #313131;
     font-family: 'Raleway', Helvetica;
     padding: 0.5em;
-    oveflow: auto;
 }
 #content{
-    max-height: 96%;
+    height: 88%;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
+    overflow: auto;
 }
 .post,.post a, #paging, #paging a, nav ul a{
     color: darkgrey;
@@ -118,11 +120,12 @@ nav ul a{
     -o-transition: all .2s ease-in;
     transition: all .2s ease-in;
 }
-.post:hover, nav ul li:hover a{
+.post:hover, nav ul li:hover a, .navselected a{
     color: white;
 }
-.post:hover a, #paging a:hover{
+.post:hover a, #paging a:hover, #paging a:active{
     color: #BE304C;
+    outline: none;
 }
 .post-body{
     padding-bottom: 1em;
@@ -138,44 +141,63 @@ nav ul a{
     margin-right: auto;
 }
 #paging{
-    margin-top: 0.5em;
+    margin-top: .5em;
     text-align: center;
+    height: 4%;
 }
-//animation
-#content .post{
-    margin-top: -25em;
-    visibility: hidden;
-}
-.showblogs .post{
-    margin-top: auto;
-    visibility: visible;
-}
-.showblogs .post:nth-child(1){
-    -webkit-transition: margin-top .3s ease-in, visibility .2s ease-in-out;
-    -moz-transition: margin-top .3s ease-in, visibility .2s ease-in-out;
-    -o-transition: margin-top .3s ease-in, visibility .2s ease-in-out;
-    transition: margin-top .3s ease-in, visibility .2s ease-in-out;
-}
-.showblogs .post:nth-child(2){
-    -webkit-transition: margin-top .3s ease-in .2s, visibility .2s ease-in-out .2s;
-    -moz-transition: margin-top .3s ease-in .2s, visibility .2s ease-in-out .2s;
-    -o-transition: margin-top .3s ease-in .2s, visibility .2s ease-in-out .2s;
-    transition: margin-top .3s ease-in .2s, visibility .2s ease-in-out .2s;
-}
-.showblogs .post:nth-child(3){
-    -webkit-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;;
-    -moz-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;;
-    -o-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;;
-    transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;;
-}
-.showblogs .post:nth-child(4){
-    -webkit-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;
-    -moz-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;
-    -o-transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;
-    transition: margin-top .3s ease-in .4s,visibility .2s ease-in-out .4s;
-}
+/*Some css3 swag*/
+@-webkit-keyframes fadein { from { opacity:0; } to { opacity:1; }}
+@-moz-keyframes fadein { from { opacity:0; } to { opacity:1; }}
+@-o-keyframes fadein { from {opacity:0; } to { opacity:1; }}
+@keyframes fadein { from { opacity:0; } to { opacity:1; }}
+@-webkit-keyframes fadeout { from { opacity:1; } to { opacity:0; }}
+@-moz-keyframes fadeout { from { opacity:1; } to { opacity:0; }}
+@-o-keyframes fadeout { from {opacity:1; } to { opacity:0; }}
+@keyframes fadeout { from { opacity:1; } to { opacity:0; }}
 
+.fadeIn{
+    opacity: 0;
+    -webkit-animation: fadein ease-in 1;
+    -moz-animation: fadein ease-in 1;
+    -o-animation: fadein ease-in 1;
+    animation: fadein ease-in 1;
 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    -o-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:.9s;
+    -moz-animation-duration:.9s;
+    -o-animation-duration:.9s;
+    animation-duration:.9s;
+}
+/*NTS: until I can find someway to make liquid spit numbers in forloops as strings.
+Reason: css selector effiency*/
+.post1.fadeIn{ 
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+    -o-animation-delay: .1s;
+    animation-delay: .1s;
+}
+.post2.fadeIn{ 
+    -webkit-animation-delay: .3s;
+    -moz-animation-delay: .3s;
+    -o-animation-delay: .3s;
+    animation-delay: .3s;
+}
+.post3.fadeIn{ 
+    -webkit-animation-delay:.6s;
+    -moz-animation-delay: .6s;
+    -o-animation-delay: .6s;
+    animation-delay: .6s;
+}
+.post4.fadeIn{ 
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */

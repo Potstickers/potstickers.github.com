@@ -103,9 +103,11 @@ nav ul a{
     background-color: #313131;
     font-family: 'Raleway', Helvetica;
     padding: 0.5em;
+    position: relative;
+    width: 82.5%;
 }
 #content{
-    height: 88%;
+    height: 89.5%;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
@@ -115,15 +117,15 @@ nav ul a{
     color: darkgrey;
 }
 .post:hover, .post:hover a{
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    transition: all .2s ease-in;
+    -webkit-transition: color .3s ease-in;
+    -moz-transition: color .3s ease-in;
+    -o-transition: color .3s ease-in;
+    transition: color .3s ease-in;
 }
-.post:hover, nav ul li:hover a, .navselected a{
+p, .post:hover, nav ul li:hover a, .navselected a{
     color: white;
 }
-.post:hover a, #paging a:hover, #paging a:active{
+h2, .post:hover a, #paging a:hover, #paging a:active{
     color: #BE304C;
     outline: none;
 }
@@ -143,9 +145,24 @@ nav ul a{
 #paging{
     margin-top: .5em;
     text-align: center;
-    height: 4%;
+    height: 3.5%;
 }
-/*Some css3 swag*/
+/*some height wrapping transitions */
+.slide_hidden{
+    height: 0%;
+    -webkit-transition: height .4s ease-out;
+    -moz-transition: height .4s ease-out;
+    -o-transition: height .4s ease-out;
+    transition: height .4s ease-out;
+}
+.slide_expand{
+    height: 100%;
+    -webkit-transition: height .4s ease-in;
+    -moz-transition: height .4s ease-in;
+    -o-transition: height .4s ease-in;
+    transition: height .4s ease-in;
+}
+/*Post list loading animations*/
 @-webkit-keyframes fadein { from { opacity:0; } to { opacity:1; }}
 @-moz-keyframes fadein { from { opacity:0; } to { opacity:1; }}
 @-o-keyframes fadein { from {opacity:0; } to { opacity:1; }}
@@ -193,6 +210,47 @@ Reason: css selector effiency*/
     animation-delay: .6s;
 }
 .post4.fadeIn{ 
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
+}
+.fadeOut{
+    opacity: 1;
+    -webkit-animation: fadeout ease-in 1;
+    -moz-animation: fadeout ease-in 1;
+    -o-animation: fadeout ease-in 1;
+    animation: fadeout ease-in 1;
+
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    -o-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:.9s;
+    -moz-animation-duration:.9s;
+    -o-animation-duration:.9s;
+    animation-duration:.9s;
+}
+.post1.fadeOut{ 
+    -webkit-animation-delay: .1s;
+    -moz-animation-delay: .1s;
+    -o-animation-delay: .1s;
+    animation-delay: .1s;
+}
+.post2.fadeOut{ 
+    -webkit-animation-delay: .3s;
+    -moz-animation-delay: .3s;
+    -o-animation-delay: .3s;
+    animation-delay: .3s;
+}
+.post3.fadeOut{ 
+    -webkit-animation-delay:.6s;
+    -moz-animation-delay: .6s;
+    -o-animation-delay: .6s;
+    animation-delay: .6s;
+}
+.post4.fadeOut{ 
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
     -o-animation-delay: 1s;

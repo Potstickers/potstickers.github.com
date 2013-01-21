@@ -1,12 +1,9 @@
 $(document).ready(
-	//handler
 	function(){
 		//cache main div that will be frequently modified
 		var $content_div = $('#content'), $paging_div = $('#paging');
 		/*dynamic content loading weeeeeeeeeeeee*/
 		if(Modernizr.history){
-			//load landing page content
-			loadContent($('.navselected a').attr('href'));
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
@@ -20,7 +17,6 @@ $(document).ready(
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					alert(_link);
 					history.pushState(null,null,_link);
 					loadContent(_link);
 					return false;
@@ -30,32 +26,41 @@ $(document).ready(
 			if($('.post').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					alert(_link);
 					history.pushState(null,null,_link);
 					loadContent(_link);
 					return false;
 				});
 			}
-			//paging a
-			function loadContent(href){
+			//back button
+			$(window).bind('popstate', function(){
+	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
+	 			loadContent(_link);
+	    	});
+	    	function loadContent(href){
 				$.get(href,function(data){
-					var $response = $(data),
-						 new_content = $response.filter('#content').html(),
-						 new_paging = $response.filter('#paging').html();
+					var	new_content = $(data).filter('#content').html(),
+						new_paging = $(data).filter('#paging').html(),
+						disqus_script = $(data).filter('script').html();
+					$content_div.find('.fadeIn').removeClass('fadeIn').addClass('fadeOut');
 					$content_div.html(new_content);
 					$paging_div.html(new_paging);
 					$content_div.find('.post').addClass('fadeIn').each(function(i){
 						$(this).addClass('post'+(i));
 					});
+					if(new_paging == undefined){
+						$paging_div.addClass('slide_hidden');
+						$content_div.addClass('slide_expand');
+					}
+					if(typeof disqus_script != undefined){
+						console.log('disqus is loaded');
+						$.getScript(disqus_script);
+					}
 				});
 			}
-			//back button
-			$(window).bind('popstate', function(){
-	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
-	 			//load content
-	    	});
+			//load landing page content
+			loadContent("page1/");
 		}else{
-			alert('Dinosaur-aged users... Y U NO UPDATE BROWSER?!'); 
+
 		}
 	}
 );

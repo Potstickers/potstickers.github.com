@@ -45,7 +45,7 @@ $(document).ready( function(){
 			$.get(href,function(data){
 				var	new_content = $(data).filter('#content').html(),
 					new_paging = $(data).filter('#paging').html(),
-					disqus_script = $(data).filter('#disqus_thread');
+					disqus_script = $(data).filter('script').text();
 				if($content_div.find('.fadeIn') > 0){
 					$(this).removeClass('fadeIn').addClass('fadeOut');
 				}
@@ -59,9 +59,9 @@ $(document).ready( function(){
 					$paging_div.addClass('slide_hidden');
 					$content_div.addClass('slide_expand');
 				}
-				if(typeof disqus_script != undefined){
-					console.log('disqus is loaded');
-					$.getScript("http://potstickers.disqus.com/embed.js");
+				if(disqus_script.length){
+					console.log('Page is a blog post, Disqus loaded');
+					eval(disqus_script);
 				}
 			});
 		}

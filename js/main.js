@@ -1,7 +1,7 @@
-$(document).ready(
-	function(){
+$(document).ready( function(){
 		//cache main div that will be frequently modified
-		var $content_div = $('#content'), $paging_div = $('#paging');
+		var $content_div = $('#content'), 
+			$paging_div = $('#paging');
 		/*dynamic content loading weeeeeeeeeeeee*/
 		if(Modernizr.history){
 			//clicking on navigation link
@@ -35,32 +35,35 @@ $(document).ready(
 			$(window).bind('popstate', function(){
 	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
 	 			loadContent(_link);
+	 			$('.navselected').removeClass('navselected');
+	 			$("li a[href*='" + _link +"']").parent().addClass('navselected');
 	    	});
-	    	function loadContent(href){
-				$.get(href,function(data){
-					var	new_content = $(data).filter('#content').html(),
-						new_paging = $(data).filter('#paging').html(),
-						disqus_script = $(data).filter('script').html();
-					$content_div.find('.fadeIn').removeClass('fadeIn').addClass('fadeOut');
-					$content_div.html(new_content);
-					$paging_div.html(new_paging);
-					$content_div.find('.post').addClass('fadeIn').each(function(i){
-						$(this).addClass('post'+(i));
-					});
-					if(new_paging == undefined){
-						$paging_div.addClass('slide_hidden');
-						$content_div.addClass('slide_expand');
-					}
-					if(typeof disqus_script != undefined){
-						console.log('disqus is loaded');
-						$.getScript(disqus_script);
-					}
-				});
-			}
 			//load landing page content
 			loadContent("page1/");
-		}else{
-
+		}
+		function loadContent(href){
+			$.get(href,function(data){
+				var	new_content = $(data).filter('#content').html(),
+					new_paging = $(data).filter('#paging').html(),
+					disqus_script = $(data).filter('#disqus_thread');
+				if($content_div.find('.fadeIn') > 0){
+					$(this).removeClass('fadeIn').addClass('fadeOut');
+				}
+				$content_div.html(new_content);
+				$paging_div.html(new_paging);
+				$content_div.find('.post').addClass('fadeIn').each(function(i){
+					$(this).addClass('post'+(i));
+				});
+				if(new_paging == undefined){
+					console.log('page does not have pagination')
+					$paging_div.addClass('slide_hidden');
+					$content_div.addClass('slide_expand');
+				}
+				if(typeof disqus_script != undefined){
+					console.log('disqus is loaded');
+					$.getScript("http://potstickers.disqus.com/embed.js");
+				}
+			});
 		}
 	}
 );

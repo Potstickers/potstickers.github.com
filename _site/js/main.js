@@ -9,7 +9,7 @@ $(document).ready( function(){
 				_link = $(this).attr('href');
 				history.pushState(null,null,_link);
 				loadContent(_link);
-				$('.navselected').removeClass('navselected');
+				$('li.navselected').removeClass('navselected');
 				$(this).parent().addClass('navselected');
 				return false;
 			});
@@ -46,22 +46,40 @@ $(document).ready( function(){
 				var	new_content = $(data).filter('#content').html(),
 					new_paging = $(data).filter('#paging').html(),
 					disqus_script = $(data).filter('script').text();
-				if($content_div.find('.fadeIn') > 0){
-					$(this).removeClass('fadeIn').addClass('fadeOut');
-				}
-				$content_div.html(new_content);
-				$paging_div.html(new_paging);
-				$content_div.find('.post').addClass('fadeIn').each(function(i){
-					$(this).addClass('post'+(i));
+				if($content_div.find('article .fadeIn').length){
+					$(this).addClass('fadeOut');
+					$('article.fadeOut.post4').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+						console.log('animation ended');
+						$content_div.html(new_content);
+						$paging_div.html(new_paging);
+						$content_div.find('.post').addClass('fadeIn').each(function(i){
+							$(this).addClass('post'+(i));
+						});
+						if(new_paging.length){
+							console.log('page does not have pagination')
+							$paging_div.addClass('slide_hidden');
+							$content_div.addClass('slide_expand');
+						}
+						if(disqus_script.length){
+							console.log('Page is a blog post, Disqus loaded');
+							eval(disqus_script);
+						}						
 				});
-				if(new_paging == undefined){
-					console.log('page does not have pagination')
-					$paging_div.addClass('slide_hidden');
-					$content_div.addClass('slide_expand');
-				}
-				if(disqus_script.length){
-					console.log('Page is a blog post, Disqus loaded');
-					eval(disqus_script);
+				}else{
+					$content_div.html(new_content);
+					$paging_div.html(new_paging);
+					$content_div.find('.post').addClass('fadeIn').each(function(i){
+						$(this).addClass('post'+(i));
+					});
+					if(new_paging.length){
+						console.log('page does not have pagination')
+						$paging_div.addClass('slide_hidden');
+						$content_div.addClass('slide_expand');
+					}
+					if(disqus_script.length){
+						console.log('Page is a blog post, Disqus loaded');
+						eval(disqus_script);
+					}
 				}
 			});
 		}

@@ -52,8 +52,9 @@ $(document).ready( function(){
 
 				var $old_posts = $('article.fadeIn');
 				if($old_posts.length){
+					var last_to_fade = '.post'+ ($old_posts.length-1);
 					$old_posts.addClass('fadeOut');
-					$old_posts.filter('.post4').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+					$old_posts.filter(last_to_fade).one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
 						postLoadContent();				
 					});
 				}else{

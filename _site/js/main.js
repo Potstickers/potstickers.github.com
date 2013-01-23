@@ -39,47 +39,40 @@ $(document).ready( function(){
 	 			$("li a[href*='" + _link +"']").parent().addClass('navselected');
 	    	});
 			//load landing page content
+			$('nav li:nth-of-type(2)').addClass('navselected');
 			loadContent("page1/");
 		}
 		function loadContent(href){
 			$.get(href,function(data){
 				var	new_content = $(data).filter('#content').html(),
-					new_paging = $(data).filter('#paging').html(),
-					disqus_script = $(data).filter('script').text();
-				if($content_div.find('article .fadeIn').length){
-					$(this).addClass('fadeOut');
-					$('article.fadeOut.post4').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
-						console.log('animation ended');
-						$content_div.html(new_content);
-						$paging_div.html(new_paging);
-						$content_div.find('.post').addClass('fadeIn').each(function(i){
-							$(this).addClass('post'+(i));
-						});
-						if(new_paging.length){
-							console.log('page does not have pagination')
-							$paging_div.addClass('slide_hidden');
-							$content_div.addClass('slide_expand');
-						}
-						if(disqus_script.length){
-							console.log('Page is a blog post, Disqus loaded');
-							eval(disqus_script);
-						}						
-				});
+					new_paging = $(data).filter('#paging').html();
+
+				var $old_posts = $('article.fadeIn');
+				if($old_posts.length){
+					$old_posts.addClass('fadeOut');
+					$old_posts.filter('.post4').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+						postLoadContent();				
+					});
 				}else{
+					postLoadContent();
+				}
+				function postLoadContent(){
 					$content_div.html(new_content);
 					$paging_div.html(new_paging);
-					$content_div.find('.post').addClass('fadeIn').each(function(i){
-						$(this).addClass('post'+(i));
-					});
-					if(new_paging.length){
-						console.log('page does not have pagination')
-						$paging_div.addClass('slide_hidden');
-						$content_div.addClass('slide_expand');
-					}
-					if(disqus_script.length){
-						console.log('Page is a blog post, Disqus loaded');
-						eval(disqus_script);
-					}
+					console.log($content_div.html());
+					var $posts = $('article.post');
+					if($posts.length){
+						$posts.addClass('fadeIn').each(function(i){
+							$(this).addClass('post'+(i));
+						});
+						//plus paging contents
+					}else{
+						var $post_title = $('#post-title');
+						if($post_title.length){
+							$post_title.addClass('slideInFromTop').siblings().addClass('fadeIn');
+							eval($(data).filter('script').text());
+						}
+					}				
 				}
 			});
 		}

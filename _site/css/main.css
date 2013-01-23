@@ -258,6 +258,16 @@ Reason: css selector effiency*/
     -o-animation-delay: 1s;
     animation-delay: 1s;
 }
+#post-title{
+    margin-top: -1.5em;
+}
+.slideInFromTop{
+    margin-top: .83em;
+    -webkit-transition: margin-top .4s ease-out;
+    -moz-transition: margin-top .4s ease-out;
+    -o-transition: margin-top .4s ease-out;
+    transition: margin-top .4s ease-out;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */

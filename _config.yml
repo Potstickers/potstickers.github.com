@@ -1,4 +1,1 @@
-permalink: /:month-:day-:year-:title
-pygments: true
-paginate: 5
 exclude: ['dummy.html']

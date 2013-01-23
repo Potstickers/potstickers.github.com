@@ -83,7 +83,6 @@ nav ul li{
     overflow: visible;
     -webkit-transition: width 0.4s ease-out;
     -moz-transition: width 0.4s ease-out;
-    -ms-transition: width 0.4s ease-out;
     -o-transition: width 0.4s ease-out;
     transition: width 0.4s ease-out;
 }
@@ -91,7 +90,6 @@ nav ul li:hover, .navselected{
     width: 12em;
     -webkit-transition: width 0.2s ease-in;
     -moz-transition: width 0.2s ease-in;
-    -ms-transition: width 0.2s ease-in;
     -o-transition: width 0.2s ease-in;
     transition: width 0.2s ease-in;
 }
@@ -122,7 +120,6 @@ nav ul a{
 .post:hover, .post:hover a{
     -webkit-transition: color .3s ease-in;
     -moz-transition: color .3s ease-in;
-    -ms-transition: color .3s ease-in;
     -o-transition: color .3s ease-in;
     transition: color .3s ease-in;
 }
@@ -157,7 +154,6 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     height: 0%;
     -webkit-transition: height .4s ease-out;
     -moz-transition: height .4s ease-out;
-    -ms-transition: height .4s ease-out;
     -o-transition: height .4s ease-out;
     transition: height .4s ease-out;
 }
@@ -165,7 +161,6 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     height: 100%;
     -webkit-transition: height .4s ease-in;
     -moz-transition: height .4s ease-in;
-    -ms-transition: height .4s ease-in;
     -o-transition: height .4s ease-in;
     transition: height .4s ease-in;
 }
@@ -183,47 +178,42 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     opacity: 0;
     -webkit-animation: fadein ease-in 1;
     -moz-animation: fadein ease-in 1;
-    -ms-animation: fadein ease-in 1;
     -o-animation: fadein ease-in 1;
     animation: fadein ease-in 1;
 
     -webkit-animation-fill-mode:forwards;
     -moz-animation-fill-mode:forwards;
-    -ms-animation-fill-mode:forwards;
     -o-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 
     -webkit-animation-duration:.9s;
     -moz-animation-duration:.9s;
-    -ms-animation-duration:.9s;
     -o-animation-duration:.9s;
     animation-duration:.9s;
 }
+/*NTS: until I can find someway to make liquid spit numbers in forloops as strings.
+Reason: css selector effiency*/
 .post1.fadeIn{ 
     -webkit-animation-delay: .1s;
     -moz-animation-delay: .1s;
-    -ms-animation-delay: .1s;
     -o-animation-delay: .1s;
     animation-delay: .1s;
 }
 .post2.fadeIn{ 
     -webkit-animation-delay: .3s;
     -moz-animation-delay: .3s;
-    -ms-animation-delay: .3s;
     -o-animation-delay: .3s;
     animation-delay: .3s;
 }
 .post3.fadeIn{ 
     -webkit-animation-delay:.6s;
     -moz-animation-delay: .6s;
-    -ms-animation-delay: .6s;
     -o-animation-delay: .6s;
     animation-delay: .6s;
 }
 .post4.fadeIn{ 
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
-    -ms-animation-delay: 1s;
     -o-animation-delay: 1s;
     animation-delay: 1s;
 }
@@ -231,90 +221,52 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     opacity: 1;
     -webkit-animation: fadeout ease-in 1;
     -moz-animation: fadeout ease-in 1;
-    -ms-animation: fadeout ease-in 1;
     -o-animation: fadeout ease-in 1;
     animation: fadeout ease-in 1;
 
     -webkit-animation-fill-mode:forwards;
     -moz-animation-fill-mode:forwards;
-    -ms-animation-fill-mode:forwards;
     -o-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 
     -webkit-animation-duration:.9s;
     -moz-animation-duration:.9s;
-    -ms-animation-duration:.9s;
     -o-animation-duration:.9s;
     animation-duration:.9s;
 }
 .post1.fadeOut{ 
     -webkit-animation-delay: .1s;
     -moz-animation-delay: .1s;
-    -ms-animation-delay: .1s;
     -o-animation-delay: .1s;
     animation-delay: .1s;
 }
 .post2.fadeOut{ 
     -webkit-animation-delay: .3s;
     -moz-animation-delay: .3s;
-    -ms-animation-delay: .3s;
     -o-animation-delay: .3s;
     animation-delay: .3s;
 }
 .post3.fadeOut{ 
     -webkit-animation-delay:.6s;
     -moz-animation-delay: .6s;
-    -ms-animation-delay: .6s;
     -o-animation-delay: .6s;
     animation-delay: .6s;
 }
 .post4.fadeOut{ 
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
-    -ms-animation-delay: 1s;
     -o-animation-delay: 1s;
     animation-delay: 1s;
 }
-/*Post title and body animations*/
-@-webkit-keyframes slideFromTop{ to{ 
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
-@-moz-keyframes slideFromTop{ to{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
-@-o-keyframes slideFromTop{ to:{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
-@keyframes slideFromTop{ to:{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
 #post-title{
-    position:absolute;
-    top: -1.5em;
-    -webkit-transition: top .4s ease;
-    -moz-transition: top .4s ease;
-    -ms-transition: top .4s ease;
-    -o-transition: top .4s ease;
-    transition: top .4s ease;
+    margin-top: -1.5em;
 }
 .slideInFromTop{
-    -webkit-animation: slideFromTop .4s ease 1 forwards;
-    -moz-animation: slideFromTop .4s ease 1 forwards;
-    -ms-animation: slideFromTop .4s ease 1 forwards;
-    -o-animation: slideFromTop .4s ease 1 forwards;
-    animation: slideFromTop .4s ease 1 forwards;
+    margin-top: .83em;
+    -webkit-transition: margin-top .4s ease-out;
+    -moz-transition: margin-top .4s ease-out;
+    -o-transition: margin-top .4s ease-out;
+    transition: margin-top .4s ease-out;
 }
 /* ==========================================================================
    Media Queries

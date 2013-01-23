@@ -35,12 +35,12 @@ $(document).ready( function(){
 			$(window).bind('popstate', function(){
 	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
 	 			loadContent(_link);
-	 			$('.navselected').removeClass('navselected');
+	 			$('li.navselected').removeClass('navselected');
 	 			$("li a[href*='" + _link +"']").parent().addClass('navselected');
 	    	});
 			//load landing page content
 			$('nav li:nth-of-type(2)').addClass('navselected');
-			loadContent("page1/");
+			loadContent("blog_posts/");
 		}
 		function loadContent(href){
 			$.get(href,function(data){

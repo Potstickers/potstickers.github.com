@@ -301,7 +301,7 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     -webkit-transform:translateY(2.33em); 
     -o-transform:translateY(2.33em);} }
 #post-title{
-    position:absolute;
+    position: relative;
     top: -1.5em;
     -webkit-transition: top .4s ease;
     -moz-transition: top .4s ease;

@@ -2,13 +2,13 @@ $(document).ready( function(){
 		//cache main div that will be frequently modified
 		var $content_div = $('#content'), 
 			$paging_div = $('#paging');
+		var base_link = "http://potstickers.github.com/";
 		/*dynamic content loading weeeeeeeeeeeee*/
 		if(Modernizr.history){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
-				history.pushState(null,null,_link);
-				loadContent(_link);
+				pushRelStateAndLoad();
 				$('li.navselected').removeClass('navselected');
 				$(this).parent().addClass('navselected');
 				return false;
@@ -17,8 +17,7 @@ $(document).ready( function(){
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					history.pushState(null,null,_link);
-					loadContent(_link);
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
@@ -26,8 +25,7 @@ $(document).ready( function(){
 			if($('.post').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					history.pushState(null,null,_link);
-					loadContent(_link);
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
@@ -40,7 +38,12 @@ $(document).ready( function(){
 	    	});
 			//load landing page content
 			$('nav li:nth-of-type(2)').addClass('navselected');
-			loadContent("blog_posts/");
+			loadContent("http://potstickers.github.com/blog_posts/");
+		}
+		function pushRelStateAndLoad(){
+			history.pushState(null,null,_link);
+			_link = base_link + _link;
+			loadContent(_link);
 		}
 		function loadContent(href){
 			$.get(href,function(data){

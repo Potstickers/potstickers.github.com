@@ -277,29 +277,29 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
 }
 /*Post title and body animations*/
 @-webkit-keyframes slideFromTop{ to{ 
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
+    transform:translateY(1.5em);
+    -ms-transform:translateY(1.5em);
+    -moz-transform:translateY(1.5em); 
+    -webkit-transform:translateY(1.5em); 
+    -o-transform:translateY(1.5em);} }
 @-moz-keyframes slideFromTop{ to{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
+    transform:translateY(1.5em);
+    -ms-transform:translateY(1.5em);
+    -moz-transform:translateY(1.5em); 
+    -webkit-transform:translateY(1.5em); 
+    -o-transform:translateY(1.5em);} }
 @-o-keyframes slideFromTop{ to:{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
+    transform:translateY(1.5em);
+    -ms-transform:translateY(1.5em);
+    -moz-transform:translateY(1.5em); 
+    -webkit-transform:translateY(1.5em); 
+    -o-transform:translateY(1.5em);} }
 @keyframes slideFromTop{ to:{
-    transform:translateY(2.33em);
-    -ms-transform:translateY(2.33em);
-    -moz-transform:translateY(2.33em); 
-    -webkit-transform:translateY(2.33em); 
-    -o-transform:translateY(2.33em);} }
+    transform:translateY1.5em);
+    -ms-transform:translateY(1.5em);
+    -moz-transform:translateY(1.5em); 
+    -webkit-transform:translateY(1.5em); 
+    -o-transform:translateY(1.5em);} }
 #post-title{
     position: relative;
     top: -1.5em;

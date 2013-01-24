@@ -9,7 +9,7 @@ $(document).ready( function(){
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
 				var state;
-				if(_link.indexOf('about.html', _link.length - 10)) state = 'about';
+				if(_link.indexOf('about.html', _link.length - 10) > -1) state = 'about';
 				else state = 'list';
 				//else nontech stuff when it comes around
 				pushRelStateAndLoad(state);

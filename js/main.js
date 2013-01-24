@@ -9,11 +9,9 @@ $(document).ready( function(){
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
 				var state;
-				if(_link.indexOf('about.html', _link.length - 10)){
-					state = 'about';
-				}else{
-					state = 'list';
-				}//and nontech stuff when it comes around
+				if(_link.indexOf('about.html', _link.length - 10)) state = 'about';
+				else state = 'list';
+				//else nontech stuff when it comes around
 				pushRelStateAndLoad(state);
 				$('li.navselected').removeClass('navselected');
 				$(this).parent().addClass('navselected');
@@ -40,18 +38,18 @@ $(document).ready( function(){
 	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
 	 			loadContent(_link);
 	 			$('li.navselected').removeClass('navselected');
-	 			if(history.state === 'about'){
+	 			if(history.state === 'about') 
 	 				$('nav li:eq(0)').addClass('navselected');
-	 			}else{
+	 			else 
 	 				$('nav li:eq(1)').addClass('navselected');
-	 			}
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
 			loadContent("http://potstickers.github.com/blog_posts/");
 		}
 		function pushRelStateAndLoad(state){
-			history.pushState(state,null,_link);
+			if(history.state != state) history.pushState(state,null,_link);
+			else history.replaceState(state,null,_link);
 			_link = base_link + _link;
 			loadContent(_link);
 		}
@@ -73,7 +71,6 @@ $(document).ready( function(){
 				function postLoadContent(){
 					$content_div.html(new_content);
 					$paging_div.html(new_paging);
-					console.log($content_div.html());
 					var $posts = $('article.post');
 					if($posts.length){
 						$posts.addClass('fadeIn').each(function(i){

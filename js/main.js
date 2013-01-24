@@ -1,27 +1,31 @@
 $(document).ready( function(){
-		//cache main div that will be frequently modified
 		var $content_div = $('#content'), 
 			$paging_div = $('#paging');
 		var base_link = "http://potstickers.github.com/";
-		/*dynamic content loading weeeeeeeeeeeee*/
+		var cur_nav = "blog_posts", last_nav = "";
 		if(Modernizr.history){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
-				var state;
-				if(_link.indexOf('about.html', _link.length - 10) > -1) state = 'about';
-				else state = 'list';
-				//else nontech stuff when it comes around
-				pushRelStateAndLoad(state);
-				$('li.navselected').removeClass('navselected');
-				$(this).parent().addClass('navselected');
+				if(_link.indexOf('about.html', _link.length - 10) > -1){
+					cur_nav = 'about';
+				}else{
+					cur_nav = 'blog_posts';
+				}//else nontech stuff when it comes around
+				pushRelStateAndLoad();
+				if(cur_nav != last_nav){
+					$('li.navselected').removeClass('navselected');
+					$(this).parent().addClass('navselected');
+					last_nav = cur_nav;
+				}
 				return false;
 			});
 			//clicking on paging nav
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					pushRelStateAndLoad('list');
+					cur_nav = 'blog_posts'
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
@@ -29,27 +33,27 @@ $(document).ready( function(){
 			if($('.post').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					pushRelStateAndLoad('post');
+					cur_nav = 'blog_posts';
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
 			//back button
 			$(window).bind('popstate', function(){
 	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
+	       		var $cur_selected = $('li.navselected');
+       			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
+       			var splitted = _link.split(/\/\./);
+       			last_nav = _splitted[0];
 	 			loadContent(_link);
-	 			$('li.navselected').removeClass('navselected');
-	 			if(history.state === 'about') 
-	 				$('nav li:eq(0)').addClass('navselected');
-	 			else 
-	 				$('nav li:eq(1)').addClass('navselected');
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
-			loadContent("http://potstickers.github.com/blog_posts/");
+			_link = "blog_posts/";
+			pushRelStateAndLoad();
 		}
-		function pushRelStateAndLoad(state){
-			if(history.state != state) history.pushState(state,null,_link);
-			else history.replaceState(state,null,_link);
+		function pushRelStateAndLoad(){
+			history.pushState(null, null, _link);
 			_link = base_link + _link;
 			loadContent(_link);
 		}

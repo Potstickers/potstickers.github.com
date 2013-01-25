@@ -24,7 +24,7 @@ $(document).ready( function(){
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					cur_nav = 'blog_posts'
+					cur_nav = 'blog_posts';
 					pushRelStateAndLoad();
 					return false;
 				});

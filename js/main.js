@@ -59,7 +59,7 @@ $(document).ready( function(){
 			if(_link == "about.html") {
 				history.replaceState(null, null, _link);
 			}else{
-				history.pushState(null, null, _link);
+				history.replaceState(null, null, _link);
 				_link = base_link + _link;
 			}
 			loadContent(_link);

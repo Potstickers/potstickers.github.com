@@ -1,24 +1,35 @@
 $(document).ready( function(){
-		//cache main div that will be frequently modified
 		var $content_div = $('#content'), 
 			$paging_div = $('#paging');
-		/*dynamic content loading weeeeeeeeeeeee*/
+		var base_link = "http://potstickers.github.com/blog_posts/";
+		var cur_nav = "blog_posts", last_nav = "";
+
 		if(Modernizr.history){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
-				history.pushState(null,null,_link);
-				loadContent(_link);
-				$('li.navselected').removeClass('navselected');
-				$(this).parent().addClass('navselected');
+				last_nav = cur_nav;
+				if(_link.indexOf('about.html', _link.length - 10) > -1){
+					cur_nav = 'about';
+				}else{
+					cur_nav = 'blog_posts';
+				}//else nontech stuff when it comes around
+				if(cur_nav != last_nav){
+					pushRelStateAndLoad();
+					$('li.navselected').removeClass('navselected');
+					$(this).parent().addClass('navselected');
+				}else{
+					_link = base_link + _link;
+					loadContent(_link);
+				}
 				return false;
 			});
 			//clicking on paging nav
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					history.pushState(null,null,_link);
-					loadContent(_link);
+					cur_nav = 'blog_posts';
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
@@ -26,21 +37,32 @@ $(document).ready( function(){
 			if($('.post').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					history.pushState(null,null,_link);
-					loadContent(_link);
+					cur_nav = 'blog_posts';
+					pushRelStateAndLoad();
 					return false;
 				});
 			}
 			//back button
 			$(window).bind('popstate', function(){
 	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
+	       		var $cur_selected = $('li.navselected');
+       			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
+       			var splitted = _link.split(/\/\./);
+       			last_nav = splitted[0];
 	 			loadContent(_link);
-	 			$('li.navselected').removeClass('navselected');
-	 			$("li a[href*='" + _link +"']").parent().addClass('navselected');
 	    	});
 			//load landing page content
-			$('nav li:nth-of-type(2)').addClass('navselected');
-			loadContent("blog_posts/");
+			$('nav li:eq(1)').addClass('navselected');
+			loadContent(base_link);
+		}
+		function pushRelStateAndLoad(){
+			if(_link == "about.html") {
+				history.replaceState(null, null, _link);
+			}else{
+				history.pushState(null, null, _link);
+				_link = base_link + _link;
+			}
+			loadContent(_link);
 		}
 		function loadContent(href){
 			$.get(href,function(data){
@@ -49,8 +71,9 @@ $(document).ready( function(){
 
 				var $old_posts = $('article.fadeIn');
 				if($old_posts.length){
+					var last_to_fade = '.post'+ ($old_posts.length-1);
 					$old_posts.addClass('fadeOut');
-					$old_posts.filter('.post4').one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
+					$old_posts.filter(last_to_fade).one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e){
 						postLoadContent();				
 					});
 				}else{
@@ -59,7 +82,6 @@ $(document).ready( function(){
 				function postLoadContent(){
 					$content_div.html(new_content);
 					$paging_div.html(new_paging);
-					console.log($content_div.html());
 					var $posts = $('article.post');
 					if($posts.length){
 						$posts.addClass('fadeIn').each(function(i){

@@ -47,7 +47,7 @@ $(document).ready( function(){
 	       		var $cur_selected = $('li.navselected');
        			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
        			var splitted = _link.split(/\/\./);
-       			last_nav = _splitted[0];
+       			last_nav = splitted[0];
 	 			loadContent(_link);
 	    	});
 			//load landing page content

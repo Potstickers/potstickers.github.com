@@ -52,7 +52,6 @@ $(document).ready( function(){
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
-			_link = "blog_posts/";
 			pushRelStateAndLoad();
 		}
 		function pushRelStateAndLoad(){

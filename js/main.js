@@ -7,16 +7,19 @@ $(document).ready( function(){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
+				last_nav = cur_nav;
 				if(_link.indexOf('about.html', _link.length - 10) > -1){
 					cur_nav = 'about';
 				}else{
 					cur_nav = 'blog_posts';
 				}//else nontech stuff when it comes around
-				pushRelStateAndLoad();
 				if(cur_nav != last_nav){
+					pushRelStateAndLoad();
 					$('li.navselected').removeClass('navselected');
 					$(this).parent().addClass('navselected');
-					last_nav = cur_nav;
+				}else{
+					_link = base_link + _link;
+					loadContent(_link);
 				}
 				return false;
 			});
@@ -53,8 +56,12 @@ $(document).ready( function(){
 			pushRelStateAndLoad();
 		}
 		function pushRelStateAndLoad(){
-			history.pushState(null, null, _link);
-			_link = base_link + _link;
+			if(_link == "about.html") {
+				history.replaceState(null, null, _link);
+			}else{
+				history.pushState(null, null, _link);
+				_link = base_link + _link;
+			}
 			loadContent(_link);
 		}
 		function loadContent(href){

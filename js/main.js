@@ -3,6 +3,7 @@ $(document).ready( function(){
 			$paging_div = $('#paging');
 		var base_link = "http://potstickers.github.com/blog_posts/";
 		var cur_nav = "blog_posts", last_nav = "";
+
 		if(Modernizr.history){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
@@ -52,7 +53,7 @@ $(document).ready( function(){
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
-			pushRelStateAndLoad();
+			loadContent(base_link);
 		}
 		function pushRelStateAndLoad(){
 			if(_link == "about.html") {

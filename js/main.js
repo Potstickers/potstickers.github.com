@@ -1,7 +1,7 @@
 $(document).ready( function(){
 		var $content_div = $('#content'), 
 			$paging_div = $('#paging');
-		var base_link = "http://potstickers.github.com/blog_posts";
+		var base_link = "http://potstickers.github.com/blog_posts/";
 		var cur_nav = "blog_posts", last_nav = "";
 
 		if(Modernizr.history){

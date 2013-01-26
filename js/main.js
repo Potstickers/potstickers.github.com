@@ -46,13 +46,12 @@ $(document).ready( function(){
 			//back button
 			$(window).bind('popstate', function(){
 				if(chrome_popped){
-					console.log("Pop event fired: ")
-		       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
-		       		console.log("Pop event fired: "+ _link);
-		       		var $cur_selected = $('li.navselected');
-	       			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
+		       		_link = location.pathname.replace(/^.*[\\\/]/, '');
+		       		console.log("Pop event fired: '"+ _link+"'");
+	       			$('li.navselected').removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
 	       			var splitted = _link.split(/\/\./);
 	       			last_nav = splitted[0];
+	       			_link = base_link + _link;
 		 			loadContent(_link);
 	 			}
 	    	});

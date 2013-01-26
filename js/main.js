@@ -51,7 +51,10 @@ $(document).ready( function(){
 	       			$('li.navselected').removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
 	       			var splitted = _link.split(/\/\./);
 	       			last_nav = splitted[0];
-	       			_link = base_link + _link;
+	       			if(_link == "about.html")
+	       				_link = "http://potstickers.github.com/"+_link;
+	       			else
+	       				_link = base_link + _link;
 		 			loadContent(_link);
 	 			}
 	    	});

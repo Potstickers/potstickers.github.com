@@ -3,6 +3,7 @@ $(document).ready( function(){
 			$paging_div = $('#paging');
 		var base_link = "http://potstickers.github.com/blog_posts/";
 		var cur_nav = "blog_posts", last_nav = "";
+		var chrome_popped = false;
 
 		if(Modernizr.history){
 			//clicking on navigation link
@@ -44,18 +45,23 @@ $(document).ready( function(){
 			}
 			//back button
 			$(window).bind('popstate', function(){
-	       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
-	       		var $cur_selected = $('li.navselected');
-       			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
-       			var splitted = _link.split(/\/\./);
-       			last_nav = splitted[0];
-	 			loadContent(_link);
+				if(chrome_popped){
+					console.log("Pop event fired: ")
+		       		_link = location.pathname.replace(/^.*[\\\/]/, ''); //get filename only
+		       		console.log("Pop event fired: "+ _link);
+		       		var $cur_selected = $('li.navselected');
+	       			$cur_selected.removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
+	       			var splitted = _link.split(/\/\./);
+	       			last_nav = splitted[0];
+		 			loadContent(_link);
+	 			}
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
 			loadContent(base_link);
 		}
 		function pushRelStateAndLoad(){
+			chrome_popped = true;
 			if(_link == "about.html") {
 				history.replaceState(null, null, _link);
 			}else{

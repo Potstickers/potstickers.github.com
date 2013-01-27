@@ -1,35 +1,21 @@
 $(document).ready( function(){
 		var $content_div = $('#content'), 
 			$paging_div = $('#paging');
-		var base_link = "http://potstickers.github.com/blog_posts/";
-		var cur_nav = "blog_posts", last_nav = "";
 		var chrome_popped = false;
 
 		if(Modernizr.history){
 			//clicking on navigation link
 			$('nav ul li').delegate('a','click',function(){
 				_link = $(this).attr('href');
-				last_nav = cur_nav;
-				if(_link.indexOf('about.html', _link.length - 10) > -1){
-					cur_nav = 'about';
-				}else{
-					cur_nav = 'blog_posts';
-				}//else nontech stuff when it comes around
-				if(cur_nav != last_nav){
-					pushRelStateAndLoad();
-					$('li.navselected').removeClass('navselected');
-					$(this).parent().addClass('navselected');
-				}else{
-					_link = base_link + _link;
-					loadContent(_link);
-				}
+				$('li.navselected').removeClass('navselected');
+				$(this).parent().addClass('navselected');
+				pushRelStateAndLoad();
 				return false;
 			});
 			//clicking on paging nav
 			if($('#paging').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					cur_nav = 'blog_posts';
 					pushRelStateAndLoad();
 					return false;
 				});
@@ -38,7 +24,6 @@ $(document).ready( function(){
 			if($('.post').length){
 				$(this).delegate('a', 'click', function(){
 					_link = $(this).attr('href');
-					cur_nav = 'blog_posts';
 					pushRelStateAndLoad();
 					return false;
 				});
@@ -46,33 +31,21 @@ $(document).ready( function(){
 			//back button
 			$(window).bind('popstate', function(){
 				if(chrome_popped){
-		       		_link = location.pathname.replace(/^.*[\\\/]/, '');
+		       		_link = location.pathname.split('/')[1];
 		       		console.log("Pop event fired: '"+ _link+"'");
-	       			var $nav_selected = $('li.navselected').removeClass('navselected').siblings();
-	       			var splitted = _link.split(/\/\./);
-	       			last_nav = splitted[0];
-	       			if(_link == "about.html"){
-	       				_link = "http://potstickers.github.com/"+_link;
-	       				$nav_selected.find("a[href*='about']").parent().addclass('navselected');
-	       			}else{
-	       				_link = base_link + _link;
-	       				$nav_selected.find("a[href='']").parent().addclass('navselected');
-	       			}
 		 			loadContent(_link);
+	       			var $nav_selected = $('nav ul li');
+	       			$nav_selected.find('a[href$='+ _link +']').parent().addClass('navselected');
 	 			}
 	    	});
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
-			loadContent(base_link);
+			loadContent("/blog");
 		}
 		function pushRelStateAndLoad(){
 			chrome_popped = true;
-			if(_link == "about.html") {
-				history.replaceState(null, null, _link);
-			}else{
-				history.pushState(null, null, _link);
-				_link = base_link + _link;
-			}
+			history.pushState(null, null, _link);
+			//_link = base_link + _link;
 			loadContent(_link);
 		}
 		function loadContent(href){

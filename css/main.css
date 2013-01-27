@@ -7,7 +7,7 @@ button,
 input,
 select,
 textarea {
-    color: #BE304C;
+    color: #222;
 }
 
 body {
@@ -76,7 +76,7 @@ nav{
 }
 nav ul li{
     width: 0;
-    background-color: #DC143C;
+    background-color: #BE304C;
     margin-left: -2.5em;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
@@ -129,13 +129,9 @@ nav ul a{
 p, .post:hover, nav ul li:hover a, .navselected a{
     color: white;
 }
-h2, .post:hover a, #paging a:hover, #paging a:active{
-    color: #BE304C;
-    outline: none;
-}
-.post-body{
-    padding-bottom: 1em;
-}
+#disqus_thread, h2, .post:hover a, #paging a:hover, #paging a:active{color: #BE304C;}
+h2, .post:hover a, #paging a:hover, #paging a:active{outline:none;}
+.post-body{padding-bottom: 1em;}
 .post-date{
     font-size: 0.8em;
     padding-bottom: 0.5em;

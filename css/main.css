@@ -129,8 +129,11 @@ nav ul a{
 p, .post:hover, nav ul li:hover a, .navselected a{
     color: white;
 }
-#disqus_thread, h2, .post:hover a, #paging a:hover, #paging a:active{color: #BE304C;}
-h2, .post:hover a, #paging a:hover, #paging a:active{outline:none;}
+#disqus_thread{color: #000;}
+h2, .post:hover a, #paging a:hover, #paging a:active{
+    color: #BE304C;
+    outline:none;
+}
 .post-body{padding-bottom: 1em;}
 .post-date{
     font-size: 0.8em;

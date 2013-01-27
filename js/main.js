@@ -48,13 +48,16 @@ $(document).ready( function(){
 				if(chrome_popped){
 		       		_link = location.pathname.replace(/^.*[\\\/]/, '');
 		       		console.log("Pop event fired: '"+ _link+"'");
-	       			$('li.navselected').removeClass('navselected').siblings().find('a[href*="'+_link+'"]').parent().addClass('navselected');
+	       			var $nav_selected = $('li.navselected').removeClass('navselected').siblings();
 	       			var splitted = _link.split(/\/\./);
 	       			last_nav = splitted[0];
-	       			if(_link == "about.html")
+	       			if(_link == "about.html"){
 	       				_link = "http://potstickers.github.com/"+_link;
-	       			else
+	       				$nav_selected.find("a[href*='about']").parent().addclass('navselected');
+	       			}else{
 	       				_link = base_link + _link;
+	       				$nav_selected.find("a[href='']").parent().addclass('navselected');
+	       			}
 		 			loadContent(_link);
 	 			}
 	    	});

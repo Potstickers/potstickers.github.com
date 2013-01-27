@@ -31,12 +31,16 @@ $(document).ready( function(){
 			//back button
 			$(window).bind('popstate', function(){
 				if(chrome_popped){
-		       		_link = location.pathname.split('/')[1];
-		       		console.log("Pop event fired: '"+ _link+"'");
+					_link = location.pathname;
+					var cur_nav;
+					if(_link.length==0){
+						_link = "/blog";
+						cur_nav = _link;
+					}else{
+		       			cur_nav = _link.split('/')[1];
+		       		}
 		 			loadContent(_link);
-	       			var $nav_selected = $('nav ul li');
-	       			if(!_link.length) _link = "/blog";
-	       			$nav_selected.find('a[href$="'+ _link +'"]').parent().addClass('navselected');
+	       			$('nav ul li').removeClass('navselected').find('a[href$="'+ cur_nav +'"]').parent().addClass('navselected');
 	 			}
 	    	});
 			//load landing page content

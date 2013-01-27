@@ -35,7 +35,7 @@ $(document).ready( function(){
 		       		console.log("Pop event fired: '"+ _link+"'");
 		 			loadContent(_link);
 	       			var $nav_selected = $('nav ul li');
-	       			$nav_selected.find('a[href$='+ _link +']').parent().addClass('navselected');
+	       			$nav_selected.find('a[href$="'+ _link +'"]').parent().addClass('navselected');
 	 			}
 	    	});
 			//load landing page content

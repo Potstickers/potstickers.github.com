@@ -110,7 +110,6 @@ nav ul a{
     position: relative;
 }
 #content{
-    height: 92%;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
@@ -129,7 +128,6 @@ nav ul a{
 p, .post:hover, nav ul li:hover a, .navselected a{
     color: white;
 }
-#disqus_thread{color: #000;}
 h2, .post:hover a, #paging a:hover, #paging a:active{
     color: #BE304C;
     outline:none;
@@ -149,7 +147,6 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     bottom: 0px;
     margin-top: .5em;
     text-align: center;
-    height: 2.5%;
 }
 /*some height wrapping transitions */
 .slide_hidden{

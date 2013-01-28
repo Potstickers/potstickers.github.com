@@ -1,5 +1,6 @@
 $(document).ready( function(){
-		var $content_div = $('#content'), 
+		var $main_div = $('#main');
+			$content_div = $('#content'), 
 			$paging_div = $('#paging');
 		var chrome_popped = false;
 
@@ -87,5 +88,8 @@ $(document).ready( function(){
 				}
 			});
 		}
+		$(window).resize(function(){
+			$content_div.height($main_div.height()-$paging_div.height());
+		});
 	}
 );

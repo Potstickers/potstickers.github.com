@@ -64,7 +64,7 @@ a{
 }
 #main{
     position: absolute;
-    width: 100%;
+    left: 12.5em;
     height: 100%;
 }
 nav{
@@ -102,8 +102,6 @@ nav ul a{
     display: block;
 }
 #content,#paging{
-    margin-left: 12.5em;
-    margin-right: 0.5em;
     background-color: #313131;
     font-family: 'Raleway', Helvetica;
     padding: 0.5em;
@@ -144,6 +142,7 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     margin-right: auto;
 }
 #paging{
+    position: absolute;
     bottom: 0px;
     margin-top: .5em;
     text-align: center;

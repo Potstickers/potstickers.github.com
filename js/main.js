@@ -50,10 +50,11 @@ $(document).ready( function(){
 			var remainder_height = $(window).height() - $paging_div.outerHeight();
 			$content_div.animate({
 				height: '+='+remainder_height
-			}, 'fast');
-			$paging_div.animate({
-				width: '+='+$content_div.width()
-			}, 'fast');
+			}, 'fast', function(){
+				$paging_div.animate({
+					width: '+='+$content_div.width()
+				}, 'fast');
+			});
 		}
 		function pushRelStateAndLoad(){
 			chrome_popped = true;

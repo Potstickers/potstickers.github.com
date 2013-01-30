@@ -51,7 +51,7 @@ $(document).ready( function(){
 			$content_div.animate({
 				height: '+='+remainder_height
 			}, 'fast');
-			$paging_div,animate({
+			$paging_div.animate({
 				width: '+='+$content_div.width()
 			}, 'fast');
 		}

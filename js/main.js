@@ -47,6 +47,13 @@ $(document).ready( function(){
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
 			loadContent("/blog");
+			var remainder_height = $(window).height() - $paging_div.outerHeight();
+			$content_div.animate({
+				height: '+='+remainder_height
+			}, 'fast');
+			$paging_div,animate({
+				width: '+='+$content_div.width()
+			}, 'fast');
 		}
 		function pushRelStateAndLoad(){
 			chrome_popped = true;
@@ -89,7 +96,7 @@ $(document).ready( function(){
 			});
 		}
 		$(window).resize(function(){
-			$content_div.height($main_div.height()-$paging_div.height());
+			$content_div.height($(window).height()-$paging_div.outerHeight());
 		});
 	}
 );

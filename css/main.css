@@ -63,18 +63,9 @@ a{
     text-decoration: none;
 }
 #main{
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: flex;
-    -ms-flex-direction: column;
-    -webkit-flex-direction: column;
-    flex-direction: column;
     height: 100%;
-    top: 0;
-    margin-left: 12em;
-    -webkit-justify-content: center;
-    justify-content: center;
+    position: absolute;
+    left: 12em;
 }
 nav{
     position: fixed;
@@ -128,10 +119,7 @@ nav ul a{
     position: relative;
 }
 #content{
-    -webkit-flex: 9;
-    -moz-flex: 9;
-    -ms-flex: 9;
-    flex: 9;
+    margin-top: 0 auto;
     padding-left: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
@@ -165,30 +153,9 @@ h2, .post:hover a, #paging a:hover, #paging a:active{
     margin-left: auto;
     margin-right: auto;
 }
-#paging{
-    -webkit-flex: 1;
-    -moz-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
+#paging{ 
     margin-top: .5em;
     text-align: center;
-}
-/*some height wrapping transitions */
-.slide_hidden{
-    height: 0%;
-    -webkit-transition: height .4s ease-out;
-    -moz-transition: height .4s ease-out;
-    -ms-transition: height .4s ease-out;
-    -o-transition: height .4s ease-out;
-    transition: height .4s ease-out;
-}
-.slide_expand{
-    height: 100%;
-    -webkit-transition: height .4s ease-in;
-    -moz-transition: height .4s ease-in;
-    -ms-transition: height .4s ease-in;
-    -o-transition: height .4s ease-in;
-    transition: height .4s ease-in;
 }
 /*Post list loading animations*/
 @-webkit-keyframes fadein { from { opacity:0; } to { opacity:1; }}

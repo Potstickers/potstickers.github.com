@@ -47,6 +47,8 @@ $(document).ready( function(){
 			//load landing page content
 			$('nav li:eq(1)').addClass('navselected');
 			loadContent("/blog");
+			var height_basis = $('nav').outerHeight(true);
+			$content_div.height(height_basis*0.9);
 		}
 		function pushRelStateAndLoad(){
 			chrome_popped = true;
@@ -78,11 +80,16 @@ $(document).ready( function(){
 							$(this).addClass('post'+(i));
 						});
 						//plus paging contents
+						$content_div.height(height_basis*.9);
+						$paging_div.removeClass('hidden');
 					}else{
 						var $post_title = $('#post-title');
 						if($post_title.length){
 							$post_title.addClass('slideInFromTop').siblings().addClass('fadeIn');
 							eval($(data).filter('script').text());
+							//hide the paging div and expand content div
+							$paging_div.addClass('hidden');
+							$content_div.height(height_basis*.965);
 						}
 					}				
 				}
